@@ -22,16 +22,13 @@ export function Keyboard() {
   // adds type event to document + removes it afterwards
   useEffect(() => {
     document.addEventListener("keydown", handleKeyPress);
-    return () => {
-      document.removeEventListener("keydown", handleKeyPress);
-    };
-  }, []);
-
-  // if letter is typed will push it to the array
-  useEffect(() => {
+    // if letter is typed will push it to the array
     if (typedLetter && findLetter(typedLetter) !== true) {
       pushToArray(typedLetter);
     }
+    return () => {
+      document.removeEventListener("keydown", handleKeyPress);
+    };
   }, [typedLetter]);
 
   return (
